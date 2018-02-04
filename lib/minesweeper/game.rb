@@ -7,6 +7,5 @@ module Minesweeper
       @board = Board.new(width, height, mines)
     end
 
-
   end
 end
