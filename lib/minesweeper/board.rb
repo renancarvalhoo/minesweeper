@@ -1,7 +1,7 @@
 module Minesweeper
   class Board
     def initialize(width, height, mines)
-      @array = Array.new(width, Array.new(height, 1))
+       @array_board = Array.new(width) {|w| Array.new(height) {|h| Square.new(w,h) } }
     end
   end
 end
