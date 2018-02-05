@@ -5,7 +5,9 @@ module Minesweeper
     def initialize(x, y)
       @x = x
       @y = y
-      
+      @chosen = false
+      @mines_around = false
+      @mine = false
     end
   end
 end
