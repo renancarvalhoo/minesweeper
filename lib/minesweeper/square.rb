@@ -6,20 +6,11 @@ module Minesweeper
       @x = x
       @y = y
       @chosen = false
-      @mines_around = false
       @mine = false
       @flagged = false
+      @mines_around = 0
     end
 
-
-    def mine_chosen
-      chosen && mine
-    end
-
-
-    def chosen_and_not_mine
-      chosen && !mine
-    end
 
     def choose
       return false if chosen || flagged

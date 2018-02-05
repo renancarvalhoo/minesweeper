@@ -5,14 +5,16 @@ module Minesweeper
     def initialize(width = 3, height = 3, mines = 3)
       @width = width; @height = height; @mines = mines
 
-      @board = Board.new(width, height, mines)
+      if @mines >= (@width * @height)
+        raise ArgumentError, 'You pass more mines than the board holds'
+      end
 
-      binding.pry
+      @board = Board.new(width, height, mines)
     end
 
 
     def board_state(settings = { show_mines: false })
-      options[:show_mines] = false if still_playing?
+      settings[:show_mines] = false if still_playing?
 
       @board.control_settings(settings).merge(
         board_configuration: { width: @width, height: @height }
@@ -46,7 +48,7 @@ module Minesweeper
 
       validate_coordinates(x, y)
 
-      binding.pry
+
 
       @board.show_square(x - 1, y - 1)
     end
