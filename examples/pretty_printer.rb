@@ -1,12 +1,13 @@
 class PrettyPrinter < SimplePrinter
   def board_format
     {
-      unknown_cell: "⬛️",
-      clear_cell: "⬜️",
-      mine: "💣",
-      flag: "🚩"
+      unknown_cell: "⬜",
+      clear_cell: "•",
+      mine: "x",
+      flag: "⚑"
     }
   end
+
 
   def print(board_state)
     board_configuration = board_state.fetch(:board_configuration)
@@ -26,10 +27,10 @@ class PrettyPrinter < SimplePrinter
     emoji_numbers = %w(0️⃣ 1️⃣ 2️⃣ 3️⃣ 4️⃣ 5️⃣ 6️⃣ 7️⃣ 8️⃣ )
     tiles.each do |tile|
       @board[tile[:x]][tile[:y]] = if tile[:mines_around].zero?
-                                     board_format[:clear_cell]
-                                   else
-                                     emoji_numbers[tile[:mines_around]]
-                                   end
+        board_format[:clear_cell]
+      else
+        emoji_numbers[tile[:mines_around]]
+      end
     end
   end
 end

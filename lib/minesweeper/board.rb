@@ -34,7 +34,7 @@ module Minesweeper
       square = squares.detect {|square| square.x.eql?(x) && square.y.eql?(y)}
       return false unless square.choose
 
-      reveal_neighboards(square) unless square.mine
+      show_coordinates_around(square) unless square.mine
 
       true
     end
@@ -51,7 +51,7 @@ module Minesweeper
 
     private
 
-    def reveal_neighboards(current_square)
+    def show_coordinates_around(current_square)
 
       near_squares = find_near_tiles(current_square).map do |coordinates|
         x = coordinates[0]
@@ -65,7 +65,7 @@ module Minesweeper
       else
         near_squares.select(&:unknown_and_empty_tile).each do |square|
           square.choose
-          reveal_neighboards(square)
+          show_coordinates_around(square)
         end
       end
     end
@@ -76,7 +76,6 @@ module Minesweeper
 
       near_squares = (-1..1).to_a.product((-1..1).to_a).reject { |dx, dy| dx == 0 && dy == 0 }
 
-      binding.pry
       near_squares.map { |dx, dy| [x + dx][y + dy] }.reject{|coordinate| coordinate[0] < 0 || coordinate[1] < 0}
 
     end
