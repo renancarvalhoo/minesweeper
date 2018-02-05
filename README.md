@@ -13,16 +13,16 @@ Run the game by typing `ruby examples/game_example.rb`.
 
 By default the project has this configuration:
 
-width:  5
-height: 5
-mines:  5
+width:  3
+height: 3
+mines:  3
 
 ### Minesweeper::Game
 
 Your client will interact with the game through this class. First, you need to create the game following the instructions:
 
 ```ruby
-game = Minesweeper::Game.new(width: 5, height: 5, mines: 2)
+game = Minesweeper::Game.new(3, 3, 3)
 ```
 
 After game creates, you can manipulate the actions. All the coordinates are
