@@ -32,7 +32,7 @@ module Minesweeper
 
     def show_square(x, y)
 
-      square = @array[x][y]
+      square = @array.detect {|square| square.x.eql?(x) && square.y.eql?(y)}
 
       return false unless square.choose
 
@@ -52,7 +52,7 @@ module Minesweeper
         near_squares_with_mines.size.times { current_tile.mines_near_founded }
       else
         near_squares.select(&:unknown_and_empty_tile).each do |square|
-          square.reveal
+          square.choose
           reveal_neighboards(square)
         end
       end
@@ -67,6 +67,19 @@ module Minesweeper
       binding.pry
       near_squares.map { |dx, dy| [x + dx][y + dy] }.reject{|coordinate| coordinate[0] < 0 || coordinate[1] < 0}
 
+    end
+
+    def find_near_tiles(tile)
+      x = tile.x
+      y = tile.y
+
+      result = [x - 1, x, x + 1]
+        .product([y - 1, y, y + 1])
+        .reject { |coordinate| coordinate[0] < 0 || coordinate[1] < 0 }
+
+      result.delete([x, y])
+
+      result
     end
 
   end

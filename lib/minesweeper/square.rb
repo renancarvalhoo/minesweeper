@@ -21,10 +21,10 @@ module Minesweeper
       chosen && !mine
     end
 
-    def reveal
-      return false if revealed || flagged
+    def choose
+      return false if chosen || flagged
 
-      @revealed = true
+      @chosen = true
       true
     end
 
